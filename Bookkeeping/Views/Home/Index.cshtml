@@ -1,0 +1,130 @@
+﻿@(Layout=null)
+    
+    
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Controllers/HomeStyle.css" rel="stylesheet" />
+        <script src="~/Controllers/Home.js"></script>
+    
+
+
+
+
+    
+        <!--查詢區-->
+        <div id="query">
+            <div class="row">
+                <div class="col-xs-2 lbsty">
+                    <label>
+                        日期區間
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <input id="Q_date1" maxlength="10" style="width:80px" />~
+                    <input id="Q_date2" maxlength="10" style="width:80px" />
+                </div>
+                <div class="col-xs-2 lbsty">
+                    <label>
+                        銀行
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <select id="Q_bank">
+                        <option value="812">台新</option>
+                        <option value="808">玉山</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="Q_Search">查詢</button>
+            <button id="Q_Add">新增</button>
+        </div>
+
+        <!--明細顯示區域-->
+        <div id="list">
+            <hr />
+            <table id="L_Grid" style="width:100%;" border="1">
+
+                <thead>
+                    <tr>
+                        <th>銀行</th>
+                        <th>日期</th>
+                        <th>轉入</th>
+                        <th>轉出</th>
+                        <th>餘額</th>
+                        <th>摘要</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+        <!--編輯區域-->
+        <div id="Edit" style="display: none;">
+            <hr />
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>
+                        日期
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <input id="E_date" maxlength="10" style="width:80px;" />
+                </div>
+
+
+                <div class="col-xs-2">
+                    <label>
+                        銀行
+                    </label>
+
+                </div>
+                <div class="col-xs-4">
+                    <select id="E_bank">
+                        <option value="812">台新</option>
+                        <option value="808">玉山</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>
+                        轉入
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <input id="E_TransferIn" maxlength="10" style="width:80px;" />
+                </div>
+
+                <div class="col-xs-2">
+                    <label>
+                        轉出
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <input id="E_TransferOut" maxlength="10" style="width:80px;" />
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>
+                        摘要
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <textarea id="E_Summary" rows="50" style="resize:none;"></textarea>
+                </div>
+
+            </div>
+
+            <button id="Q_Save">儲存</button>
+        </div>
