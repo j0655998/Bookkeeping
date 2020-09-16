@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 
-
     // 查詢功能
     $("#Q_Search").on("click", function (e) {
 
@@ -14,9 +13,9 @@
         $("#list tbody").empty();
 
         $.ajax({
-            type: 'POST',
-            url: 'Select',
-            dataType: 'json',
+            type: "POST",
+            url: "Select",
+            dataType: "json",
             data: JSON.stringify(sendData),
             success: function (result) {
                 let data = result["data"];

@@ -96,7 +96,6 @@ namespace Bookkeeping.Controllers
         // 查詢功能
         [HttpPost]
         public ActionResult Select() {
-            //public ActionResult Select(string jsonString) {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;

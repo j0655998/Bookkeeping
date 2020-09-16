@@ -1,16 +1,10 @@
 ﻿@(Layout=null)
     
-    
         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
         <link href="~/Controllers/HomeStyle.css" rel="stylesheet" />
         <script src="~/Controllers/Home.js"></script>
-    
-
-
-
-
     
         <!--查詢區-->
         <div id="query">
@@ -21,8 +15,8 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <input id="Q_date1" maxlength="10" style="width:80px" />~
-                    <input id="Q_date2" maxlength="10" style="width:80px" />
+                    <input id="Q_date1" maxlength="10" style="width:125px;" type="date" />~
+                    <input id="Q_date2" maxlength="10" style="width:125px;" type="date"/>
                 </div>
                 <div class="col-xs-2 lbsty">
                     <label>
@@ -74,7 +68,7 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <input id="E_date" maxlength="10" style="width:80px;" />
+                    <input id="E_date" maxlength="10" style="width:125px;" />
                 </div>
 
 
@@ -121,7 +115,7 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <textarea id="E_Summary" rows="50" style="resize:none;"></textarea>
+                    <textarea id="E_Summary" rows="5" style="resize:none; width: 800px;"></textarea>
                 </div>
 
             </div>
