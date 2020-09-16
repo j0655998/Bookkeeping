@@ -22,8 +22,6 @@ namespace Bookkeeping.Controllers
 
         // 新增功能
         public ActionResult Add() {
-
-            //public ActionResult Select(string jsonString) {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;
@@ -71,26 +69,16 @@ namespace Bookkeeping.Controllers
                     ds = new DataSet();
 
                     errMsg = e.Message;
-                    //return;
                 }
-
             }
+
             ds = ds ?? new DataSet();
 
-            string js = JsonConvert.SerializeObject(new
+            return Content(JsonConvert.SerializeObject(new
             {
-                data = ds.Tables[0],
+                data = new DataTable(),
                 errMsg = errMsg
-            });
-
-
-            return Json(new {
-                data = ds,
-                errMsg = errMsg
-            });
-
-           
-
+            }));
         }
 
         // 查詢功能
@@ -141,17 +129,10 @@ namespace Bookkeeping.Controllers
                     ds = new DataSet();
 
                     errMsg = e.Message;
-                    //return;
                 }
 
             }
             ds = ds ?? new DataSet();
-
-            string js = JsonConvert.SerializeObject(new
-            {
-                data = ds.Tables[0],
-                errMsg = errMsg
-            });
 
             return Content(JsonConvert.SerializeObject(new
             {
@@ -162,8 +143,6 @@ namespace Bookkeeping.Controllers
 
         // 修改
         public ActionResult Update() {
-
-            //public ActionResult Select(string jsonString) {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;
@@ -212,26 +191,16 @@ namespace Bookkeeping.Controllers
                     ds = new DataSet();
 
                     errMsg = e.Message;
-                    //return;
                 }
 
             }
             ds = ds ?? new DataSet();
 
-            string js = JsonConvert.SerializeObject(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 data = ds.Tables[0],
                 errMsg = errMsg
-            });
-
-            return Json(new {
-                data = ds,
-                errMsg = errMsg
-            });
-
-           
-
-
+            }));
         }
 
         // 刪除功能

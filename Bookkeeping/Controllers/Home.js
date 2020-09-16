@@ -65,4 +65,44 @@
         $("#Edit").show();
     });
 
+    // 儲存按鈕
+    $("#Q_Save").on("click", function (e) {
+        let sendData = {
+            Date: $("#E_date").val(),
+            Bank: $("#E_bank").val(),
+            TransferIn: $("#E_TransferIn").val(),
+            TransferOut: $("#E_TransferOut").val(),
+            Summary: $("#E_Summary").val()
+        }
+
+        // 清空資料
+        $("#list tbody").empty();
+
+        $.ajax({
+            type: "POST",
+            url: "Add",
+            dataType: "json",
+            data: JSON.stringify(sendData),
+            success: function (result) {
+                let data = result["data"];
+                let errMsg = result["errMsg"]; // 錯誤訊息
+
+                // if = 如果, errMsg = 錯誤訊息, "" = 空字串
+                // 如果錯誤訊息為空
+                if (errMsg == "") {
+                    // 執行這裡
+                    $("#Edit").hide();
+                    $("#Q_Search").trigger("click");
+                } else {
+                    // else = 否則
+                    // 提示錯誤訊息
+                    alert(errMsg);
+                }
+            },
+            error: function (error) {
+                alert(error.responseText);
+
+            }
+        });
+    });
 });
