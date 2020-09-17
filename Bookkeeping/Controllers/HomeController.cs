@@ -258,16 +258,13 @@ namespace Bookkeeping.Controllers
             }
             ds = ds ?? new DataSet();
 
-            string js = JsonConvert.SerializeObject(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 data = ds.Tables[0],
                 errMsg = errMsg
-            });
+            }));
 
-            return Json(new {
-                data = ds,
-                errMsg = errMsg
-            });
+
         }
 
 
