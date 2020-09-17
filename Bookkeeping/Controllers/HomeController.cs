@@ -174,7 +174,8 @@ namespace Bookkeeping.Controllers
                 adp.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                 // 加入參數
-                adp.SelectCommand.Parameters.Add(new SqlParameter("@Date", data["Date1"]) { Direction = ParameterDirection.Input });
+                adp.SelectCommand.Parameters.Add(new SqlParameter("@sysid", data["sysid"]) { Direction = ParameterDirection.Input });
+                adp.SelectCommand.Parameters.Add(new SqlParameter("@Date", data["Date"]) { Direction = ParameterDirection.Input });
                 adp.SelectCommand.Parameters.Add(new SqlParameter("@Bank", data["Bank"]) { Direction = ParameterDirection.Input });
                 adp.SelectCommand.Parameters.Add(new SqlParameter("@TransferIn", data["TransferIn"]) { Direction = ParameterDirection.Input });
                 adp.SelectCommand.Parameters.Add(new SqlParameter("@TransferOut", data["TransferOut"]) { Direction = ParameterDirection.Input });
