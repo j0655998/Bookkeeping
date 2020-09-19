@@ -83,6 +83,8 @@
     // 新增按鈕
     $("#S_Add").on("click", function (e) {
         $("#Edit [param]").val("");
+        $("#E_date").val(dateToString(new Date()));
+        $("#E_bank")[0].selectedIndex = 0;
         $("#Edit").removeAttr("rowid").show();
     });
 
@@ -163,11 +165,15 @@
     // 設定日期預設值
     let _date = new Date();
     _date.setDate(1);
-    $("#S_date1").val(_date.getFullYear() + "-" + ("0" + (_date.getMonth() + 1)).slice(-2) + "-" + ("0" + _date.getDate()).slice(-2));
+    $("#S_date1").val(dateToString(_date));
     _date.setMonth(_date.getMonth() + 1);
     _date.setDate(_date.getDate() - 1);
-    $("#S_date2").val(_date.getFullYear() + "-" + ("0" + (_date.getMonth() + 1)).slice(-2) + "-" + ("0" + _date.getDate()).slice(-2));
+    $("#S_date2").val(dateToString(_date));
 
     // 必填欄位加上*號
     $("[required]").parent().addClass("requiredElement");
 });
+
+function dateToString(date) {
+    return date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+}
