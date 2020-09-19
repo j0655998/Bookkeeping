@@ -7,7 +7,7 @@
         <script src="~/Controllers/Home.js"></script>
     
         <!--查詢區-->
-        <div id="query">
+        <div id="Search">
             <div class="row">
                 <div class="col-xs-2 lbsty">
                     <label>
@@ -15,8 +15,8 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <input id="Q_date1" maxlength="10" style="width:125px;" type="date" />~
-                    <input id="Q_date2" maxlength="10" style="width:125px;" type="date" />
+                    <input id="S_date1" maxlength="10" style="width:125px;" type="date" param="Date1" required/>~
+                    <input id="S_date2" maxlength="10" style="width:125px;" type="date" param="Date2" required/>
                 </div>
                 <div class="col-xs-2 lbsty">
                     <label>
@@ -24,22 +24,21 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <select id="Q_bank">
+                    <select id="S_bank" param="Bank" required>
                         <option value="812">台新</option>
                         <option value="808">玉山</option>
                     </select>
                 </div>
             </div>
 
-            <button id="Q_Search">查詢</button>
-            <button id="Q_Add">新增</button>
+            <button id="S_Search">查詢</button>
+            <button id="S_Add">新增</button>
         </div>
 
         <!--明細顯示區域-->
-        <div id="list">
+        <div id="Detailed">
             <hr />
-            <table id="L_Grid" style="width:100%;" border="1">
-
+            <table id="D_table" style="width:100%;" border="1">
                 <thead>
                     <tr>
                         <th></th>
@@ -53,10 +52,7 @@
                 </thead>
                 <tbody>
                 </tbody>
-
             </table>
-
-
         </div>
 
         <!--編輯區域-->
@@ -69,7 +65,7 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <input id="E_date" maxlength="10" style="width:125px;" type="date" />
+                    <input id="E_date" maxlength="10" style="width:125px;" type="date" param="Date" required/>
                 </div>
 
 
@@ -80,7 +76,7 @@
 
                 </div>
                 <div class="col-xs-4">
-                    <select id="E_bank">
+                    <select id="E_bank" param="Bank" required>
                         <option value="812">台新</option>
                         <option value="808">玉山</option>
                     </select>
@@ -95,7 +91,7 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <input id="E_TransferIn" maxlength="10" style="width:80px;" type="number" />
+                    <input id="E_TransferIn" maxlength="10" style="width:80px;" type="number" param="TransferIn" required />
                 </div>
 
                 <div class="col-xs-2">
@@ -104,7 +100,7 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <input id="E_TransferOut" maxlength="10" style="width:80px;" type="number" />
+                    <input id="E_TransferOut" maxlength="10" style="width:80px;" type="number" param="TransferOut" required />
                 </div>
 
             </div>
@@ -116,10 +112,10 @@
                     </label>
                 </div>
                 <div class="col-xs-4">
-                    <textarea id="E_Summary" rows="5" style="resize:none; width: 800px;"></textarea>
+                    <textarea id="E_Summary" rows="5" style="resize:none; width: 800px;" param="Summary"></textarea>
                 </div>
 
             </div>
 
-            <button id="Q_Save">儲存</button>
+            <button id="S_Save">儲存</button>
         </div>

@@ -206,8 +206,6 @@ namespace Bookkeeping.Controllers
 
         // 刪除功能
         public ActionResult Delete() {
-
-            //public ActionResult Select(string jsonString) {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;
@@ -253,7 +251,6 @@ namespace Bookkeeping.Controllers
                     ds = new DataSet();
 
                     errMsg = e.Message;
-                    //return;
                 }
 
             }
@@ -264,11 +261,6 @@ namespace Bookkeeping.Controllers
                 data = ds.Tables[0],
                 errMsg = errMsg
             }));
-
-
         }
-
-
-
     }
 }
