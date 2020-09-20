@@ -237,6 +237,7 @@ namespace Bookkeeping.Controllers
                 adp.SelectCommand.CommandType = CommandType.StoredProcedure;
 
                 // 加入參數
+                adp.SelectCommand.Parameters.Add(new SqlParameter("@sysid", data["sysid"]) { Direction = ParameterDirection.Input });
                 adp.SelectCommand.Parameters.Add(new SqlParameter("@Date", data["Date"]) { Direction = ParameterDirection.Input });
                 adp.SelectCommand.Parameters.Add(new SqlParameter("@Bank", data["Bank"]) { Direction = ParameterDirection.Input });
                 adp.SelectCommand.Parameters.Add(new SqlParameter("@lastdate", data["lastdate"]) { Direction = ParameterDirection.Input });
@@ -258,7 +259,7 @@ namespace Bookkeeping.Controllers
 
             return Content(JsonConvert.SerializeObject(new
             {
-                data = ds.Tables[0],
+                data = new DataTable(),
                 errMsg = errMsg
             }));
         }

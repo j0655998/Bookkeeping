@@ -172,6 +172,44 @@
 
     // 必填欄位加上*號
     $("[required]").parent().addClass("requiredElement");
+
+    // 刪除
+    $("#Detailed tbody").on("click", `button[name="deleteData"]`, function (e) {
+        // 取得元件
+        let element = $(this);
+        // 取得系統id
+        let sysid = element.attr("rowid");
+        // 根據系統ID取得對應的資料
+        let data = l_data.filter(x => x["sysid"] == sysid)[0];
+
+        $.ajax({
+            type: "POST",
+            url: "Delete",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function (result) {
+                let data = result["data"];
+                let errMsg = result["errMsg"]; // 錯誤訊息
+
+                // if = 如果, errMsg = 錯誤訊息, "" = 空字串
+                // 如果錯誤訊息為空
+                if (errMsg == "") {
+                    $("#S_Search").trigger("click");
+                } else {
+                    // else = 否則
+                    // 提示錯誤訊息
+                    alert(errMsg);
+                }
+            },
+            error: function (error) {
+                alert(error.responseText);
+            }
+        });
+    });
+
+
+
+
 });
 
 function dateToString(date) {
