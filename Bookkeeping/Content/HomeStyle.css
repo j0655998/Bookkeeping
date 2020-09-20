@@ -4,11 +4,10 @@
 	font-size: 12px;
 }
 
-.requiredElement::before {
+.requiredStar::before {
 	content: "*";
 	font-size: 16px;
 	color: red;
 	position: relative;
 	right: 2px;
-	z-index: 10;
 }

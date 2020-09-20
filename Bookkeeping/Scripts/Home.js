@@ -24,6 +24,7 @@
         }
 
         // 清空資料
+        $("#Edit").hide();
         $("#Detailed tbody").empty();
 
         $.ajax({
@@ -106,10 +107,10 @@
         });
 
         let sendData = $.extend(data, editData);
-
+        
         $.ajax({
             type: "POST",
-            url: rowid ? "Add" : "Update", 
+            url: rowid ? "Update" : "Add", 
             dataType: "json",
             data: JSON.stringify(sendData),
             success: function (result) {
@@ -120,7 +121,6 @@
                 // 如果錯誤訊息為空
                 if (errMsg == "") {
                     // 執行這裡
-                    $("#Edit").hide();
 
                     // 如果查詢日期為空,塞入E區日期到查詢區域日期
                     if ($("#S_date1").val() == "") {
@@ -159,19 +159,9 @@
             }
         });
         // 顯示編輯區域
-        $("#Edit").attr("rowid", "sysid").show();
+        $("#Edit").attr("rowid", sysid).show();
     });
 
-    // 設定日期預設值
-    let _date = new Date();
-    _date.setDate(1);
-    $("#S_date1").val(dateToString(_date));
-    _date.setMonth(_date.getMonth() + 1);
-    _date.setDate(_date.getDate() - 1);
-    $("#S_date2").val(dateToString(_date));
-
-    // 必填欄位加上*號
-    $("[required]").parent().addClass("requiredElement");
 
     // 刪除
     $("#Detailed tbody").on("click", `button[name="deleteData"]`, function (e) {
@@ -208,8 +198,16 @@
     });
 
 
+    // 設定日期預設值
+    let _date = new Date();
+    _date.setDate(1);
+    $("#S_date1").val(dateToString(_date));
+    _date.setMonth(_date.getMonth() + 1);
+    _date.setDate(_date.getDate() - 1);
+    $("#S_date2").val(dateToString(_date));
 
-
+    // 必填欄位加上*號
+    $("[required]").parent().addClass("requiredStar");
 });
 
 function dateToString(date) {
