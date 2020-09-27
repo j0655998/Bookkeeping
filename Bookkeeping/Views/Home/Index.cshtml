@@ -1,151 +1,161 @@
 ﻿@(Layout=null)
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/HomeStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/Home.js"></script>
+</head>
+<body style="background-color: #c3e1f6">
+    <!--查詢區-->
+    <div id="Search">
+        <div class="row">
+            <div class="col-xs-2 lbsty">
+                <label>
+                    日期區間
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <input id="S_date1" maxlength="10" style="width:150px;" class="form-control" type="date" param="Date1" required />~
+                <input id="S_date2" maxlength="10" style="width:150px;" class="form-control" type="date" param="Date2" required />
+            </div>
+            <div class="col-xs-2 lbsty">
+                <label>
+                    銀行
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <select id="S_bank" param="Bank" style="width: 150px;" class="form-control" required>
+                    <option value="812">台新</option>
+                    <option value="808">玉山</option>
+                </select>
+            </div>
+        </div>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/HomeStyle.css" rel="stylesheet" />
-<script src="~/Scripts/Home.js"></script>
-
-<!--查詢區-->
-<div id="Search">
-    <div class="row">
-        <div class="col-xs-2 lbsty">
-            <label>
-                日期區間
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <input id="S_date1" maxlength="10" style="width:125px;" type="date" param="Date1" required />~
-            <input id="S_date2" maxlength="10" style="width:125px;" type="date" param="Date2" required />
-        </div>
-        <div class="col-xs-2 lbsty">
-            <label>
-                銀行
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <select id="S_bank" param="Bank" required>
-                <option value="812">台新</option>
-                <option value="808">玉山</option>
-            </select>
-        </div>
+        @*<button id="S_Search" class="btn btn-primary">查詢</button>
+            <button id="S_Add" class="btn btn-success">新增</button>
+            <button id="S_Close" class="btn btn-info">結帳</button>*@
+        <button id="S_Search" class="btn btn-dark">查詢</button>
+        <button id="S_Add" class="btn btn-dark">新增</button>
+        <button id="S_Close" class="btn btn-dark">結帳</button>
     </div>
 
-    <button id="S_Search">查詢</button>
-    <button id="S_Add">新增</button>
-    <button id="S_Close">結帳</button>
-</div>
-
-<!--明細顯示區域-->
-<div id="Detailed">
-    <hr />
-    <table id="D_table" style="width:100%;" border="1">
-        <thead>
-            <tr>
-                <th></th>
-                <th>銀行</th>
-                <th>日期</th>
-                <th>轉入</th>
-                <th>轉出</th>
-                <th>餘額</th>
-                <th>摘要</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
-
-<!--編輯區域-->
-<div id="Edit" style="display: none;">
-    <hr />
-    <div class="row">
-        <div class="col-xs-2">
-            <label>
-                日期
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <input id="E_date" maxlength="10" style="width:125px;" type="date" param="Date" required />
-        </div>
-
-
-        <div class="col-xs-2">
-            <label>
-                銀行
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <select id="E_bank" param="Bank" required>
-                <option value="812">台新</option>
-                <option value="808">玉山</option>
-            </select>
-        </div>
+    <!--明細顯示區域-->
+    <div id="Detailed">
+        <hr />
+        <table id="D_table" style="width:100%;" border="1">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>銀行</th>
+                    <th>日期</th>
+                    <th>轉入</th>
+                    <th>轉出</th>
+                    <th>餘額</th>
+                    <th>摘要</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 
+    <!--編輯區域-->
+    <div id="Edit" style="display: none;">
+        <hr />
+        <div class="row">
+            <div class="col-xs-2">
+                <label>
+                    日期
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <input id="E_date" maxlength="10" style="width:150px;" class="form-control" type="date" param="Date" required />
+            </div>
 
-    <div class="row">
-        <div class="col-xs-2">
-            <label>
-                轉入
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <input id="E_TransferIn" maxlength="10" style="width:80px;" type="number" param="TransferIn" required />
+
+            <div class="col-xs-2">
+                <label>
+                    銀行
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <select id="E_bank" style="width: 150px;" class="form-control" param="Bank" required>
+                    <option value="812">台新</option>
+                    <option value="808">玉山</option>
+                </select>
+            </div>
         </div>
 
-        <div class="col-xs-2">
-            <label>
-                轉出
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <input id="E_TransferOut" maxlength="10" style="width:80px;" type="number" param="TransferOut" required />
+
+        <div class="row">
+            <div class="col-xs-2">
+                <label>
+                    轉入
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <input id="E_TransferIn" maxlength="10" style="width:150px;" class="form-control" type="number" param="TransferIn" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label>
+                    轉出
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <input id="E_TransferOut" maxlength="10" style="width:150px;" class="form-control" type="number" param="TransferOut" required />
+            </div>
+
         </div>
 
+        <div class="row">
+            <div class="col-xs-2">
+                <label>
+                    摘要
+                </label>
+            </div>
+            <div class="col-xs-10">
+                <textarea id="E_Summary" rows="5" style="resize:none; width: 95%;" class="form-control" param="Summary"></textarea>
+            </div>
+        </div>
+
+        @*<button id="E_Save" class="btn btn-primary">儲存</button>*@
+        <button id="E_Save" class="btn btn-dark">儲存</button>
     </div>
 
-    <div class="row">
-        <div class="col-xs-2">
-            <label>
-                摘要
-            </label>
+    <!--結帳區域-->
+    <div id="Close" style="display: none;">
+        <hr />
+        <div class="row">
+            <div class="col-xs-2">
+                <label>
+                    結帳日期
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <input id="C_date" maxlength="10" style="width:150px;" class="form-control" type="date" param="CloseDate" required />
+            </div>
+
+
+            <div class="col-xs-2">
+                <label>
+                    銀行
+                </label>
+            </div>
+            <div class="col-xs-4">
+                <select id="C_bank" param="Bank" style="width: 150px;" class="form-control" required>
+                    <option value="812">台新</option>
+                    <option value="808">玉山</option>
+                </select>
+            </div>
         </div>
-        <div class="col-xs-10">
-            <textarea id="E_Summary" rows="5" style="resize:none; width: 95%;" param="Summary"></textarea>
-        </div>
+
+        @*<button id="C_Save" class="btn btn-warning">結帳</button>
+            <button id="C_Cancel" class="btn btn-danger">取消結帳</button>*@
+        <button id="C_Save" class="btn btn-dark">結帳</button>
+        <button id="C_Cancel" class="btn btn-dark">取消結帳</button>
     </div>
-
-    <button id="E_Save">儲存</button>
-</div>
-
-<!--結帳區域-->
-<div id="Close" style="display: none;">
-    <hr />
-    <div class="row">
-        <div class="col-xs-2">
-            <label>
-                結帳日期
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <input id="C_date" maxlength="10" style="width:125px;" type="date" param="CloseDate" required />
-        </div>
-
-
-        <div class="col-xs-2">
-            <label>
-                銀行
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <select id="C_bank" param="Bank" required>
-                <option value="812">台新</option>
-                <option value="808">玉山</option>
-            </select>
-        </div>
-    </div>
-
-    <button id="C_Save">結帳</button>
-    <button id="C_Cancel">取消結帳</button>
-</div>
+</body>
+</html>

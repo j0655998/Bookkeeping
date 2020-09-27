@@ -9,7 +9,11 @@
 	font-size: 16px;
 	color: red;
 	position: relative;
-	right: 2px;
+	right: 12px;
+}
+
+.form-control {
+	display: unset;
 }
 
 table.tableBodyScroll tbody {
@@ -22,3 +26,8 @@ table.tableBodyScroll tbody {
 		width: 100%;
 		table-layout: fixed;
 	}
+
+button.btn {
+	padding: 3px 12px;
+	margin: 5px 1px;
+}

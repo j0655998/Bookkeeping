@@ -42,11 +42,13 @@
                     for (let i = 0; i < data.length; i++) {
                         // 是否允許修改及刪除
                         let allowedit = data[i]["allowedit"] == "1" ? "" : " disabled"
+        //<button name="editData" class="btn btn-primary" rowid="${data[i]["sysid"]}"${allowedit}>修改</button>
+        //<button name="deleteData" class="btn btn-danger" rowid="${data[i]["sysid"]}"${allowedit}>刪除</button>
                         $("#D_table tbody").append(`
 <tr rowid="${data[i]["sysid"]}">
     <td>
-        <button name="editData" rowid="${data[i]["sysid"]}"${allowedit}>修改</button>
-        <button name="deleteData" rowid="${data[i]["sysid"]}"${allowedit}>刪除</button>
+        <button name="editData" class="btn btn-dark" rowid="${data[i]["sysid"]}"${allowedit}>修改</button>
+        <button name="deleteData" class="btn btn-dark" rowid="${data[i]["sysid"]}"${allowedit}>刪除</button>
     </td>
     <td>
         ${data[i]["Bank"]}
