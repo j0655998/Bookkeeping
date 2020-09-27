@@ -22,7 +22,8 @@ namespace Bookkeeping.Controllers
         }
 
         // 新增功能
-        public ActionResult Add() {
+        public ActionResult Add()
+        {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;//傳回HTTP post內容
@@ -47,8 +48,8 @@ namespace Bookkeeping.Controllers
         }
 
         // 查詢功能
-       
-        public ActionResult Select() {
+        public ActionResult Select()
+        {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;
@@ -75,7 +76,8 @@ namespace Bookkeeping.Controllers
         }
 
         // 修改
-        public ActionResult Update() {
+        public ActionResult Update()
+        {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;
@@ -100,7 +102,8 @@ namespace Bookkeeping.Controllers
         }
 
         // 刪除功能
-        public ActionResult Delete() {
+        public ActionResult Delete()
+        {
             string sendData = string.Empty;
 
             HttpRequestBase request = HttpContext.Request;
@@ -116,6 +119,32 @@ namespace Bookkeeping.Controllers
             data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(sendData);
 
             string errMsg = GetHome.Delete(data);
+
+            return Content(JsonConvert.SerializeObject(new
+            {
+                data = new DataTable(),
+                errMsg = errMsg
+            }));
+        }
+
+        // 結帳功能
+        public ActionResult Close()
+        {
+            string sendData = string.Empty;
+
+            HttpRequestBase request = HttpContext.Request;
+
+            request.InputStream.Position = 0;
+            using (MemoryStream ms = new MemoryStream(HttpContext.Request.BinaryRead(HttpContext.Request.ContentLength)))
+            {
+                sendData = new StreamReader(ms).ReadToEnd();
+            }
+
+            Dictionary<string, dynamic> data = new Dictionary<string, dynamic>();
+
+            data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(sendData);
+
+            string errMsg = GetHome.Close(data);
 
             return Content(JsonConvert.SerializeObject(new
             {
