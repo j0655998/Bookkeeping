@@ -33,6 +33,7 @@
 
     <button id="S_Search">查詢</button>
     <button id="S_Add">新增</button>
+    <button id="S_Close">結帳</button>
 </div>
 
 <!--明細顯示區域-->
@@ -73,7 +74,6 @@
             <label>
                 銀行
             </label>
-
         </div>
         <div class="col-xs-4">
             <select id="E_bank" param="Bank" required>
@@ -111,11 +111,41 @@
                 摘要
             </label>
         </div>
-        <div class="col-xs-4">
-            <textarea id="E_Summary" rows="5" style="resize:none; width: 800px;" param="Summary"></textarea>
+        <div class="col-xs-10">
+            <textarea id="E_Summary" rows="5" style="resize:none; width: 95%;" param="Summary"></textarea>
         </div>
-
     </div>
 
-    <button id="S_Save">儲存</button>
+    <button id="E_Save">儲存</button>
+</div>
+
+<!--結帳區域-->
+<div id="Close" style="display: none;">
+    <hr />
+    <div class="row">
+        <div class="col-xs-2">
+            <label>
+                結帳日期
+            </label>
+        </div>
+        <div class="col-xs-4">
+            <input id="C_date" maxlength="10" style="width:125px;" type="date" param="CloseDate" required />
+        </div>
+
+
+        <div class="col-xs-2">
+            <label>
+                銀行
+            </label>
+        </div>
+        <div class="col-xs-4">
+            <select id="C_bank" param="Bank" required>
+                <option value="812">台新</option>
+                <option value="808">玉山</option>
+            </select>
+        </div>
+    </div>
+
+    <button id="C_Save">結帳</button>
+    <button id="C_Cancel">取消結帳</button>
 </div>

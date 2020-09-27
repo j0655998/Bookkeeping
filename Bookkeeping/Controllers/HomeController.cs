@@ -152,5 +152,31 @@ namespace Bookkeeping.Controllers
                 errMsg = errMsg
             }));
         }
+
+        // 取消結帳功能
+        public ActionResult CancelClose()
+        {
+            string sendData = string.Empty;
+
+            HttpRequestBase request = HttpContext.Request;
+
+            request.InputStream.Position = 0;
+            using (MemoryStream ms = new MemoryStream(HttpContext.Request.BinaryRead(HttpContext.Request.ContentLength)))
+            {
+                sendData = new StreamReader(ms).ReadToEnd();
+            }
+
+            Dictionary<string, dynamic> data = new Dictionary<string, dynamic>();
+
+            data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(sendData);
+
+            string errMsg = GetHome.CancelClose(data);
+
+            return Content(JsonConvert.SerializeObject(new
+            {
+                data = new DataTable(),
+                errMsg = errMsg
+            }));
+        }
     }
 }

@@ -169,7 +169,8 @@ namespace Bookkeeping.Models
 
             return errMsg;
         }
-        // 刪除功能
+
+        // 結帳功能
         public string Close(Dictionary<string, dynamic> data)
         {
             // 初始化變數
@@ -181,7 +182,44 @@ namespace Bookkeeping.Models
             string errMsg = string.Empty;
 
             using (SqlConnection conn = new SqlConnection(Connection1.ConnectionString))
-            using (SqlDataAdapter adp = new SqlDataAdapter("deleteBookkeeping", conn))
+            using (SqlDataAdapter adp = new SqlDataAdapter("closeBookkeeping", conn))
+            {
+                // 設定執行SP
+                adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                // 加入參數
+                adp.SelectCommand.Parameters.Add(new SqlParameter("@CloseDate", data["CloseDate"]) { Direction = ParameterDirection.Input });
+                adp.SelectCommand.Parameters.Add(new SqlParameter("@Bank", data["Bank"]) { Direction = ParameterDirection.Input });
+                
+                try
+                {
+                    // 連接SP
+                    adp.Fill(ds);
+                }
+                catch (Exception e)
+                {
+                    ds = new DataSet();
+                    errMsg = e.Message;
+                }
+            }
+            ds = ds ?? new DataSet();
+
+            return errMsg;
+        }
+
+        // 取消結帳功能
+        public string CancelClose(Dictionary<string, dynamic> data)
+        {
+            // 初始化變數
+            DataSet ds = new DataSet();
+
+            // 宣告一個接收錯誤訊息的字串
+            // 資料型態 string
+            // 宣告一個名為errMsg的字串, 並初始化其值為「空」字串
+            string errMsg = string.Empty;
+
+            using (SqlConnection conn = new SqlConnection(Connection1.ConnectionString))
+            using (SqlDataAdapter adp = new SqlDataAdapter("cancelClose", conn))
             {
                 // 設定執行SP
                 adp.SelectCommand.CommandType = CommandType.StoredProcedure;
