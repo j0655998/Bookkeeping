@@ -18,8 +18,6 @@ namespace Bookkeeping.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
 
@@ -27,19 +25,19 @@ namespace Bookkeeping.Controllers
         public ActionResult Add() {
             string sendData = string.Empty;
 
-            HttpRequestBase request = HttpContext.Request;
+            HttpRequestBase request = HttpContext.Request;//傳回HTTP post內容
 
-            request.InputStream.Position = 0;
-            using (MemoryStream ms = new MemoryStream(HttpContext.Request.BinaryRead(HttpContext.Request.ContentLength)))
+            request.InputStream.Position = 0; //傳入HTTP內容 資料流位子=0  從0開始
+            using (MemoryStream ms = new MemoryStream(HttpContext.Request.BinaryRead(HttpContext.Request.ContentLength)))//讀到最後
             {
-                sendData = new StreamReader(ms).ReadToEnd();
+                sendData = new StreamReader(ms).ReadToEnd(); //取出來 字串
             }
 
             Dictionary<string, dynamic> data = new Dictionary<string, dynamic>();
 
             data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(sendData);
 
-            string errMsg = GetHome.Add(data);
+            string errMsg = GetHome.Add(data); //呼叫models 取得回傳結果
 
             return Content(JsonConvert.SerializeObject(new
             {
@@ -49,7 +47,7 @@ namespace Bookkeeping.Controllers
         }
 
         // 查詢功能
-        [HttpPost]
+       
         public ActionResult Select() {
             string sendData = string.Empty;
 

@@ -5,7 +5,6 @@
 
     // 查詢功能
     $("#S_Search").on("click", function (e) {
-
         //let sendData = {
         //    Date1: $("#S_date1").val(),
         //    Date2: $("#S_date2").val(),
@@ -18,7 +17,7 @@
             sendData[element.attr("param")] = element.val();
         });
 
-        if (sendData.Date1 == "" || sendData.Date2 == "" ) {
+        if (sendData.Date1 == "" || sendData.Date2 == "") {
             alert("請輸入日期");
             return;
         }
@@ -32,10 +31,10 @@
             url: "Select",
             dataType: "json",
             data: JSON.stringify(sendData),
-            success: function (result) {
+            success: function (result) { //成功之後要執行
                 let data = result["data"];
                 let errMsg = result["errMsg"];
-                
+
                 if (errMsg == "") {
                     // 寫入資料到變數
                     l_data = data;
@@ -76,7 +75,7 @@
             },
             error: function (error) {
                 alert(error.responseText);
-                
+
             }
         });
     });
@@ -91,6 +90,7 @@
 
     // 儲存按鈕
     $("#S_Save").on("click", function (e) {
+
         if ($("#Edit [param][required]").toArray().some(e => $(e).val() == "")) {
             alert("請填寫必填欄位。");
             return;
@@ -107,10 +107,10 @@
         });
 
         let sendData = $.extend(data, editData);
-        
+
         $.ajax({
             type: "POST",
-            url: rowid ? "Update" : "Add", 
+            url: rowid ? "Update" : "Add",
             dataType: "json",
             data: JSON.stringify(sendData),
             success: function (result) {
@@ -162,7 +162,6 @@
         $("#Edit").attr("rowid", sysid).show();
     });
 
-
     // 刪除
     $("#Detailed tbody").on("click", `button[name="deleteData"]`, function (e) {
         // 取得元件
@@ -196,7 +195,6 @@
             }
         });
     });
-
 
     // 設定日期預設值
     let _date = new Date();
