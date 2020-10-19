@@ -20,7 +20,7 @@ namespace Bookkeeping.Models
 
             // 宣告一個接收錯誤訊息的字串
             // 資料型態 string
-            // 宣告一個名為errMsg的字串, 並初始化其值為「空」字串
+            // 宣告一個名為errMsg的字串, 並初始化其值為「空」字串 
             string errMsg = string.Empty;
 
             using (SqlConnection conn = new SqlConnection(Connection1.ConnectionString))
