@@ -15,7 +15,7 @@ namespace Bookkeeping.Models
         // 新增功能
         public string Add(Dictionary<string, dynamic> data)
         {
-            // 初始化變數
+            // 初始化變 
             DataSet ds = new DataSet();
 
             // 宣告一個接收錯誤訊息的字串
